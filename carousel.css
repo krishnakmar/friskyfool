@@ -1,0 +1,41 @@
+.carousel-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-track {
+  display: inline-flex;
+  animation: scroll 10s linear infinite;
+}
+
+.carousel-track a {
+  display: inline-block;
+  margin: 0 20px; /* Keeps space around each image */
+  text-decoration: none;
+}
+
+.carousel-track a {
+  display: contents !important;
+}
+
+.carousel-track img {
+  width: 10%; /* Adjust width as needed */
+  border-radius: 50%;
+  display: block; /* Ensures image fills the anchor area */
+}
+  
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}

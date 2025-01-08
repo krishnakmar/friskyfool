@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Work Animation</title>
+    <style>
+        @font-face {
+            font-family: 'HumaneRegular';
+            src: url('/font/Humane-Regular-BF657fc366da5a3.otf') format('truetype');
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'OverusedGroteskMedium';
+            src: url('/font/OverusedGrotesk-Medium-BF64eeac181a996.otf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        section {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out;
+            padding: 70px 0 0;
+        }
+
+        #slider-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .featured-slide {
+            display: none;
+            text-align: center;
+            position: relative;
+        }
+
+        .featured-slide.active-slide {
+            display: block;
+        }
+
+        .work1 img {
+            width: 48%;
+            height: max-content;
+        }
+
+        .featured-heading {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: slideToPosition 2s forwards;
+            animation-delay: 0.5s;
+            z-index: 99999;
+            margin: 0;
+            padding: 0;
+            color: #F9DC5C;
+            font-size: 180px;
+            text-transform: uppercase;
+            font-family: 'HumaneRegular', sans-serif;
+            font-weight: 400;
+        }
+
+        @keyframes slideToPosition {
+            0% {
+                opacity: 0;
+                top: 50%;
+            }
+
+            100% {
+                opacity: 1;
+                top: calc(100% - 320px);
+            }
+        }
+
+        .work2 {
+            position: absolute;
+            top: 50px;
+            right: -20em;
+            text-align: right;
+            max-width: 300px;
+        }
+
+        .work1 h6 {
+            margin: 0;
+            padding: 0;
+            color: #F9DC5C;
+            font-size: 42px;
+            text-transform: uppercase;
+            margin-bottom: -25px;
+            z-index: 999;
+            position: relative;
+            font-family: 'HumaneRegular', sans-serif;
+            font-weight: 400;
+        }
+
+        .work2 h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .work2 p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .slidebtn {
+            margin: 0 auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 560px;
+    /* padding: 80px 0; */
+    background-image: url(/image/BLURED.png);
+    background-position: center;
+    background-size: contain;
+    height: 230px;
+    z-index: 99999;
+    position: relative;
+        }
+
+        .slidebtn button {
+            margin: 0 10px;
+            box-shadow: none;
+            border: none;
+            background: none;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'OverusedGroteskMedium', sans-serif;
+        }
+
+        /* New CSS for Left and Right Sliding Images */
+        .slide-left, .slide-right {
+            position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    width: 42%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 1s, transform 1s;
+        }
+
+        .slide-left {
+            left: -20px;
+            animation: slideLeft 1s forwards;
+        }
+
+        .slide-right {
+            right: -28px;
+            animation: slideRight 1s forwards;
+        }
+
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(-100%) translateY(-50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) translateY(-50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(100%) translateY(-50%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) translateY(-50%);
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="featured-work" id="featured-work">
+        <h1 class="featured-heading">FEATURED WORK</h1>
+        <div id="slider-container">
+            <!-- Slides will be dynamically added here -->
+        </div>
+
+        <!-- New Images for Left and Right sliding effects -->
+        <img src="/image/88.png" class="slide-left" alt="Left Slide Image">
+        <img src="/image/84.png" class="slide-right" alt="Right Slide Image">
+
+        <div class="slidebtn">
+            <button onclick="showPreviousSlide()">PREVIOUS</button>
+            <button onclick="showNextSlide()">NEXT</button>
+        </div>
+    </section>
+
+    <script>
+        // Array of slide data
+        const slidesData = [
+            {
+                bgImage: '/image/140.png',
+                work1: { title: "cruelty", img: "/image/feature1.png" },
+                work2: { title: "About project", description: "This is a description of project 1." }
+            },
+            {
+                bgImage: '/image/141.png',
+                work1: { title: "novelty", img: "/image/feature2.png" },
+                work2: { title: "About project", description: "This is a description of project 2." }
+            },
+            {
+                bgImage: '/image/142.png',
+                work1: { title: "ABSTRACT", img: "/image/feature3.png" },
+                work2: { title: "About project", description: "This is a description of project 3." }
+            },
+            {
+                bgImage: '/image/143.png',
+                work1: { title: "ABSTRACT", img: "/image/feature4.png" },
+                work2: { title: "About project", description: "This is a description of project 4." }
+            },
+            {
+                bgImage: '/image/144.png',
+                work1: { title: "ABSTRACT", img: "/image/feature5.png" },
+                work2: { title: "About project", description: "This is a description of project 5." }
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function renderSlides() {
+            const sliderContainer = document.getElementById('slider-container');
+
+            slidesData.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = `featured-slide ${index === 0 ? 'active-slide' : ''}`;
+                slideDiv.innerHTML = `
+                    <div class="work1">
+                        <h6>${slide.work1.title}</h6>
+                        <img src="${slide.work1.img}" alt="img">
+                    </div>
+                    <div class="work2">
+                        <h4>${slide.work2.title}</h4>
+                        <p>${slide.work2.description}</p>
+                    </div>
+                `;
+                sliderContainer.appendChild(slideDiv);
+            });
+        }
+
+        function updateSlideVisibility() {
+            const slides = document.querySelectorAll('.featured-slide');
+            const featuredWorkSection = document.getElementById('featured-work');
+
+            // Update slide visibility and background image
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active-slide', index === currentIndex);
+            });
+            featuredWorkSection.style.backgroundImage = `url(${slidesData[currentIndex].bgImage})`;
+        }
+
+        function showNextSlide() {
+            currentIndex = (currentIndex + 1) % slidesData.length;
+            updateSlideVisibility();
+        }
+
+        function showPreviousSlide() {
+            currentIndex = (currentIndex - 1 + slidesData.length) % slidesData.length;
+            updateSlideVisibility();
+        }
+
+        // Initialize slider
+        renderSlides();
+        updateSlideVisibility();
+    </script>
+</body>
+
+</html>

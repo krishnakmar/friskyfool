@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4-Image Carousel</title>
+
+  <style>
+      /* Container for the images */
+      .carousel-container {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Scrolling images */
+    .carousel-track {
+      display: inline-flex;
+      animation: scroll 100s linear infinite; /* Adjusted to 30s for slower speed */
+    }
+
+    /* Styling for each image */
+    .carousel-track img {
+      width: 10%;
+      border-radius: 50%;
+      margin: 0 20px;
+    }
+
+    /* Keyframes for scrolling animation */
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Pausing animation on hover */
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <div class="carousel-track">
+    <a href="https://www.youtube.com/desimpedidos" target="_blank">
+        <img src="image/1.jpg" alt="Image 1">
+    </a>
+    <a href="https://www.youtube.com/@YasserM55" target="_blank">
+        <img src="image/2.jpg" alt="Image 2">
+    </a>
+    <a href="https://www.youtube.com/@7mzawiitube" target="_blank">
+        <img src="image/3.jpg" alt="Image 3">
+    </a>
+    <a href="https://www.youtube.com/channel/UCFLHUAgHpIyNiEHw2R_yzuA" target="_blank"> 
+        <img src="image/4.jpg" alt="Image 4">
+    </a>
+    <a href="https://www.youtube.com/channel/UCMgQhVF2B2i1F8XKKsEJaMQ" target="_blank">
+        <img src="image/5.jpg" alt="Image 5">
+    </a>
+    <a href="https://www.youtube.com/@explodingtnt" target="_blank">
+        <img src="image/6.jpg" alt="Image 6">
+    </a>
+    <a href="https://www.twitch.tv/og_lukky" target="_blank">
+        <img src="image/7.png" alt="Image 7">
+    </a>
+    <a href="https://www.youtube.com/@TomatoFortnite" target="_blank">
+        <img src="image/8.jpg" alt="Image 8">
+    </a>
+    <a href="#" target="_blank">
+        <img src="image/9.jpg" alt="Image 9">
+    </a>
+    <a href="https://www.youtube.com/desimpedidos" target="_blank">
+        <img src="image/1.jpg" alt="Image 1">
+    </a>
+    <a href="https://www.youtube.com/@YasserM55" target="_blank">
+        <img src="image/2.jpg" alt="Image 2">
+    </a>
+    <a href="https://www.youtube.com/@7mzawiitube" target="_blank">
+        <img src="image/3.jpg" alt="Image 3">
+    </a>
+    <a href="https://www.youtube.com/channel/UCFLHUAgHpIyNiEHw2R_yzuA" target="_blank"> 
+        <img src="image/4.jpg" alt="Image 4">
+    </a>
+    <a href="https://www.youtube.com/channel/UCMgQhVF2B2i1F8XKKsEJaMQ" target="_blank">
+        <img src="image/5.jpg" alt="Image 5">
+    </a>
+    <a href="https://www.youtube.com/@explodingtnt" target="_blank">
+        <img src="image/6.jpg" alt="Image 6">
+    </a>
+    <a href="https://www.twitch.tv/og_lukky" target="_blank">
+        <img src="image/7.png" alt="Image 7">
+    </a>
+    <a href="https://www.youtube.com/@TomatoFortnite" target="_blank">
+        <img src="image/8.jpg" alt="Image 8">
+    </a>
+    <a href="#" target="_blank">
+        <img src="image/9.jpg" alt="Image 9">
+    </a>
+   
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+.custom-slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.custom-slider-track {
+    display: flex;
+    height: max-content;
+    transition: transform 0.5s ease;  
+}
+
+.custom-slider-item {
+    flex: 1 0 33.33%; /* Show 3 items per view */
+    box-sizing: border-box;
+    margin: 0 10px; /* Adds gap between images */
+}
+
+.custom-slider-item img {
+    width: 70%;
+    height: max-content;
+    transition: transform 0.3s ease;
+}
+
+.custom-slider-item:hover img {
+    transform: scale(1.1);
+}

@@ -1,0 +1,190 @@
+
+@font-face {
+    font-family: 'HumaneRegular';
+    src: url('/font/Humane-Regular-BF657fc366da5a3.otf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OverusedGroteskMedium';
+    src: url('/font/OverusedGrotesk-Medium-BF64eeac181a996.otf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+    padding: 70px 0 0;
+}
+
+#slider-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.featured-slide {
+    display: none;
+    text-align: center;
+    position: relative;
+}
+
+.featured-slide.active-slide {
+    display: block;
+}
+
+.work1 img {
+    width: 48%;
+    height: max-content;
+}
+
+.featured-heading {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: slideToPosition 2s forwards;
+    animation-delay: 0.5s;
+    z-index: 99999;
+    margin: 0;
+    padding: 0;
+    color: #F9DC5C;
+    font-size: 180px;
+    text-transform: uppercase;
+    font-family: 'HumaneRegular', sans-serif;
+    font-weight: 400;
+}
+
+@keyframes slideToPosition {
+    0% {
+        opacity: 0;
+        top: 50%;
+    }
+
+    100% {
+        opacity: 1;
+        top: calc(100% - 320px);
+    }
+}
+
+.work2 {
+    position: absolute;
+    top: 50px;
+    right: -20em;
+    text-align: right;
+    max-width: 300px;
+}
+
+.work1 h6 {
+    margin: 0;
+    padding: 0;
+    color: #F9DC5C;
+    font-size: 42px;
+    text-transform: uppercase;
+    margin-bottom: -25px;
+    z-index: 999;
+    position: relative;
+    font-family: 'HumaneRegular', sans-serif;
+    font-weight: 400;
+}
+
+.work2 h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.work2 p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.slidebtn {
+    margin: 0 auto;
+display: flex;
+width: 100%;
+justify-content: center;
+gap: 560px;
+/* padding: 80px 0; */
+background-image: url(/image/BLURED.png);
+background-position: center;
+background-size: contain;
+height: 230px;
+z-index: 99999;
+position: relative;
+}
+
+.slidebtn button {
+    margin: 0 10px;
+    box-shadow: none;
+    border: none;
+    background: none;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'OverusedGroteskMedium', sans-serif;
+}
+
+/* New CSS for Left and Right Sliding Images */
+.slide-left, .slide-right {
+    position: absolute;
+top: 70%;
+transform: translateY(-50%);
+width: 42%;
+height: auto;
+opacity: 0;
+transition: opacity 1s, transform 1s;
+}
+
+.slide-left {
+    left: -20px;
+    animation: slideLeft 1s forwards;
+}
+
+.slide-right {
+    right: -28px;
+    animation: slideRight 1s forwards;
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(-100%) translateY(-50%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) translateY(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(100%) translateY(-50%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) translateY(-50%);
+        opacity: 1;
+    }
+}
