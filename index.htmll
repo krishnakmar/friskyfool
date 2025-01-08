@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/home.css">
+    <script src="carousel.js" defer></script>
+    <link rel="stylesheet" href="/custom-slider.css">
+    <link rel="stylesheet" href="/featured-work.css">
+
+
+    <style>
+        /* Container for the images */
+        .carousel-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Scrolling images */
+        .carousel-track {
+            display: inline-flex;
+            animation: scroll 10s linear infinite;
+        }
+
+        /* Styling for each image */
+        .carousel-track img {
+            width: 9%;
+            border-radius: 50%;
+            margin: 0 20px;
+        }
+
+        /* Keyframes for scrolling animation */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Pausing animation on hover */
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        .phone-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            width: 120px;
+            height: 50px;
+            background-color: #f9dc5c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            text-decoration: none;
+            border-radius: 8px;
+            color: #000 !important;
+        }
+
+        .phone-icon img {
+            width: 60%;
+            height: auto;
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .oursupportheading h2 {
+            padding: 0;
+            margin: 0;
+            font-size: 100px;
+            text-transform: uppercase;
+            color: #f9dc5c;
+            padding-bottom: 40px;
+            text-align: center;
+            font-family: 'HumaneRegular', sans-serif;
+            font-weight: 400;
+            margin-top: 60px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        .carousel-track a {
+            display: contents !important;
+        }
+
+
+        .carousel-btn.left {
+            left: 10px;
+        }
+
+        .carousel-btn.right {
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .carousel-track img {
+                width: 50%;
+                /* Display 2 images in a row on smaller screens */
+            }
+        }
+
+
+        body {
+            overflow-x: hidden;
+
+        }
+
+        @font-face {
+            font-family: 'HumaneRegular';
+            src: url('/font/Humane-Regular-BF657fc366da5a3.otf') format('truetype');
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'OverusedGroteskMedium';
+            src: url('/font/OverusedGrotesk-Medium-BF64eeac181a996.otf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+
+
+        .hamburger-menu {
+            position: fixed;
+            top: 10px;
+            right: 50px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0 0 0);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-left: 5px;
+        }
+
+        /* Mobile menu visibility */
+        .mobile-menu.visible {
+            left: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        /* Animation for left-to-right and right-to-left entrance */
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Applying the animation to sections */
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        /* Featured Work styling */
+        .featured-work {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 70px 0;
+            text-align: center;
+            transition: background-image 0.5s ease;
+            margin-top: 40px;
+        }
+
+        /* Content animations */
+
+        .animate-element {
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .slidebtn button {
+            border: none;
+            background: none;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'OverusedGroteskMedium', sans-serif;
+        }
+
+        .mobile-menu ul li:hover {
+            background-color: #f9dc5c;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu ul li:hover a {
+            color: #000 !important;
+        }
+
+        .mobile-menu ul li {
+            border-top: 2px solid #F9DC5C;
+            padding: 15px 0px 20px 80px;
+            margin: 0;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .mobile-menu ul li a {
+            text-decoration: none;
+            font-size: 38px;
+            color: #F9DC5C;
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-menu ul li a span {
+            font-size: 15px;
+            padding-right: 15px;
+        }
+
+
+        .featured-work {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 70px 0 0;
+            text-align: center;
+            transition: background-image 0.5s ease;
+            margin-top: 40px;
+        }
+
+        .featured-slide {
+            display: none;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .work1 h6 {
+            margin: 0;
+            padding: 0;
+            color: #F9DC5C;
+            font-size: 42px;
+            text-transform: uppercase;
+            margin-bottom: -25px;
+            z-index: 999;
+            position: relative;
+            font-family: 'HumaneRegular', sans-serif;
+            font-weight: 400;
+        }
+
+
+        .work1 h1 {
+            margin: 0;
+            padding: 0;
+            color: #F9DC5C;
+            font-size: 180px;
+            text-transform: uppercase;
+            z-index: 999;
+            position: relative;
+            margin-top: -50px;
+            font-family: 'HumaneRegular', sans-serif;
+            font-weight: 400;
+
+        }
+
+        .work2 h4 {
+            font-family: 'OverusedGroteskMedium', sans-serif;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .work2 p {
+            font-family: 'OverusedGroteskMedium', sans-serif;
+            font-size: 17px;
+        }
+
+        .active-slide {
+            display: flex;
+        }
+
+        .work1 {
+            width: 50%;
+            text-align: center;
+        }
+
+        .work2 {
+            width: 25%;
+            text-align: left;
+        }
+
+        .work1 img {
+            width: 48%;
+            height: max-content;
+        }
+
+        .slidebtn {
+            display: flex;
+            justify-content: space-around;
+            margin-top: -170px;
+            background-image: url(/image/BLURED.png);
+            background-position: center;
+            background-size: contain;
+            height: 336px;
+            padding-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div id="small-logo" class="logo"><a href="/"><img src="/image/mainlogo.png" alt="Small Logo"></a></div>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar" style="color: red;"></div>
+            <div class="close-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden">
+            <ul>
+                <li><a href="#featured-work"><span>(1)</span>Portfolio</a></li>
+                <li><a href="#about-us"><span>(2)</span>About us</a></li>
+                <li><a href="#services"><span>(3)</span>Services</a></li>
+                <li><a href="#testimonials"><span>(4)</span>Testimonials</a></li>
+                <li><a href="/contact-us.html"><span>(5)</span>Contact us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Large Logo -->
+    <div id="large-logo" class="logo"><img src="/image/logo.png" alt="Large Logo"></div>
+
+    <!-- Content Section -->
+    <div class="content" id="content">
+        <div class="section section1">
+            <video src="/reel.mp4" autoplay></video>
+            <div id="contents">
+                <div class="paragraphtext">
+                    <h1>“Artistry Unleashed, Where Pixels and Polygons Prance in Abundance”</h1>
+                </div>
+                <div class="secondiv">
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                        <a href="https://www.instagram.com/friskyfool/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                    <div class="scrollbox1">
+                        <div class=" scrollbox">
+                            <h3>Scroll</h3>
+                        </div>
+                    </div>
+                        <button id="lets-chat" class="letschat"> <a href="#">Let's Chat</a></button>
+                </div>
+            </div>
+        </div>
+
+        <section class="showcasereel">
+            <h1 class="slide-in-left">Showcase Reel</h1>
+            <div id="video-section" class="slide-in-right">
+                <video id="main-video" autoplay muted loop>
+                    <source src="/art.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="video-controls">
+                    <button id="play-pause">Play / Pause</button>
+                    <button id="fullscreen">Enter Full Screen</button>
+                </div>
+            </div>
+            <h3>CLOAKING BAD 💩 SINCE 2020</h3>
+        </section>
+
+        <!-- <section class="featured-work" id="featured-work">
+            <div id="slider-container"> -->
+                <!-- Slides will be dynamically added here -->
+            <!-- </div>
+            <div class="slidebtn">
+                <button onclick="showPreviousSlide()">PREVIOUS</button>
+                <button onclick="showNextSlide()">NEXT</button>
+            </div>
+        </section> -->
+
+        <!-- <iframe src="/page.html" frameborder="0"></iframe> -->
+
+        <div id="featured-work-container"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                new FeaturedWork('featured-work-container', slidesData);
+            });
+        </script>
+
+
+        <!-- Our supporters and Partners -->
+
+        <div class="oursupportheading">
+            <h2>our clients</h2>
+        </div>
+        <!-- <div id="my-slider-container"></div>  -->
+
+        <!-- <script>
+            loadSlider('my-slider-container');
+        </script> -->
+
+        <image-carousel></image-carousel>
+
+
+
+
+
+
+        <!-- About Us Section -->
+        <div class="aboutussec" id="about-us">
+            <div class="aboutusimg">
+                <img src="/image/about.png" alt="About">
+            </div>
+            <div class="aboutcontent">
+                <h3>Friskyfool <span>Studio</span></h3>
+                <p>Friskyfool is an Indian-based creative development studio. Through technology and design they differentiate artists, creatives, and brands to help them break through the noise. We like to challenge the norms.</p>
+            </div>
+        </div>
+        <div class="about1content " >
+            <p>Our process is collaborative and iterative. With every new project, we take the time to listen to the
+                needs of our partners in order to build a body of work from first principles. We divide the work into
+                three phases, in which the head and the hand are always present: understanding, thinking, and making. In
+                every phase we present developments for review and feedback before progressing to the next.</p>
+            <p>A selection of our clients are </p>
+        </div>
+
+
+
+        <div class="oursupportheading" id="services">
+            <h2>Services</h2>
+        </div>
+        <div id="my-slider"></div>
+
+        <script type="module">
+            import ImageSlider from './ImageSlider.js';
+
+            const images = [
+    { src: '/image/service5.png', serviceName: 'Game Environment' },
+    { src: '/image/service3.png', serviceName: 'Video Editing' },
+    { src: '/image/service4.png', serviceName: '3D Visualization' },
+    { src: '/image/service1.png', serviceName: 'Graphic Design' },
+    { src: '/image/service2.png', serviceName: 'Creative Consultancy' },
+    { src: '/image/service5.png', serviceName: 'Game environment' },
+    // { src: '/image/service3.png', serviceName: 'Video Editing' },
+    // { src: '/image/service4.png', serviceName: '3D Visualization' },
+    // { src: '/image/service1.png', serviceName: 'Graphic Design' },
+];
+
+            new ImageSlider('#my-slider', images, {
+                autoplaySpeed: 10000,
+                numImagesPerSlide: 3,
+                autoplay: true
+            });
+        </script>
+
+
+
+        <!-- Testimonials -->
+
+        <div class="oursupportheading" id="testimonials">
+            <h2>Our Happy Clients</h2>
+        </div>
+
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="quote">I had an exceptional experience working with the guy! From start to finish, they demonstrated professionalism, creativity, and a deep understanding of my project needs. Communication was seamless, and they delivered well ahead of the deadline, going above and beyond my expectations. The quality of the work was outstanding, with careful attention to every detail. I couldn’t be happier with the final result and look forward to collaborating again in the future. Highly recommended!
+                </div>
+                <div class="client-info">
+                    <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">leonardovlgolo</p>
+                        <p class="company-name">Italy</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="quote">Delivered a quality map that was exactly what I was looking for. Very impressed! Will definitely consider working with this person again!</div>
+                <div class="client-info">
+                  <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">cedricjackson23</p>
+                        <p class="company-name">United States</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+          <div class="cards-container1">
+            <div class="card">
+                <div class="quote">Damn nice work ! Better than expected ! Thanks !!</div>
+                <div class="client-info">
+                    <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">natyrollenne</p>
+                        <p class="company-name">France</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="quote">great job. went above and beyond. turned out better then i expected and delivered on time.</div>
+                <div class="client-info">
+                  <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">agtspldr</p>
+                        <p class="company-name">United States</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="cards-container1">
+            <div class="card">
+                <div class="quote">Très bonne expérience avec un service très maitrisé ! Je recommande vivement ses services . Very good experience with a very mastered service! I highly recommend his services.</div>
+                <div class="client-info">
+                    <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">cedrlcx</p>
+                        <p class="company-name">France</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="quote">Extreamly good end product with insane graphics and animations, the seller is fast and professional</div>
+                <div class="client-info">
+                  <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">kallarl</p>
+                        <p class="company-name">Italy</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+        <!-- <div class="cards-container1">
+            <div class="card">
+                <div class="quote">Amazing work! I am continuing work with them as well! They were very good at communicating and getting back with me with updates on the work that was being completed.</div>
+                <div class="client-info">
+                    <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">slmonlelnlnger</p>
+                        <p class="company-name">United States</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="quote">Lavoro eccezionale! Il freelance ha superato ogni mia aspettativa, dimostrando grande professionalità, creatività e attenzione ai dettagli. La comunicazione è stata rapida e chiara, e il risultato finale è stato consegnato perfettamente nei tempi stabiliti. Consiglio vivamente di collaborare con lui per chi cerca un lavoro di qualità e un servizio impeccabile. Sicuramente lo contatterò di nuovo per futuri progetti!</div>
+                <div class="client-info">
+                  <img src="/image/ellipse.png" alt="Client Logo" class="client-logo">
+                    <div class="client-details">
+                        <p class="client-name">leonardovlgolo</p>
+                        <p class="company-name">Italy</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div id="slider-component-container"></div>
+
+        <script src="slider.js"></script>
+        <script>
+            loadSlider('slider-component-container');
+        </script> -->
+
+
+        <footer>
+            <div class="mainfooter">
+                <div class="footerimg">
+                    <h3>Ready to be a change-maker?<br>It's time we talked. Get in touch</h3>
+                    <a href="/contact-us.html">
+                        <img src="/image/mailbox.png" alt="">
+                    </a>
+                </div>
+
+
+
+                <div class="marqueetag">
+                    <marquee behavior="" direction="left">
+                        <span><img src="/image/Icon.svg" alt=""></span>
+                        <span>hello <b>at</b> friskyfool <b>dot</b> com</span>
+                        <span><img src="/image/Icon.svg" alt=""></span>
+                        <span>hello <b>at</b> friskyfool <b>dot</b> com</span>
+                        <span><img src="/image/Icon.svg" alt=""></span>
+                        <span>hello <b>at</b> friskyfool <b>dot</b> com</span>
+                        <span><img src="/image/Icon.svg" alt=""></span>
+                        <span>hello <b>at</b> friskyfool <b>dot</b> com</span>
+                    </marquee>
+                </div>
+            </div>
+            <div class="footermenu">
+                <ul>
+                    <li>
+                        <a href="#about-us">About</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/channel/UC7VuZKRr7goVT66XOMfO1Xw" target="_blank">YouTube</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/friskyfool/" target="_blank">Instagram</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/friskyfool-studios/" target="_blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://www.artstation.com/friskyfool" target="_blank">Artstation</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    </div>
+   <!-- <div>
+    <button  style="display: none;"><a href="#">Let's Chat</a></button>
+   </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // Toggle the mobile menu visibility
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.classList.toggle('visible');
+        }
+
+        // Reload animation functionality
+        window.onload = function () {
+            var largeLogo = document.getElementById('large-logo');
+            var smallLogo = document.getElementById('small-logo');
+            var content = document.getElementById('content');
+
+            setTimeout(function () {
+                largeLogo.style.transform = 'translate(-50%, -50%) scale(0.3)';
+            }, 1500);
+
+            setTimeout(function () {
+                largeLogo.style.transform = 'translate(-50%, -300%) scale(0.3)';
+            }, 3000);
+
+            setTimeout(function () {
+                largeLogo.style.display = 'none';
+                smallLogo.style.display = 'block';
+                document.body.style.overflowY = 'auto';
+                content.classList.add('visible');
+            }, 4500);
+        };
+    </script>
+
+
+
+
+<script src="/featured-work.js"></script>
+<script src="/slides-data.js"></script>
+    <script src="/custom-slider.js"></script>
+    <script src="/home.js"></script>
+
+
+
+
+<script>
+    function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function handleScroll() {
+    const elements = document.querySelectorAll('.slide-in-left, .slide-in-right');
+    elements.forEach((el) => {
+        if (isInViewport(el)) {
+            el.classList.add('animate'); // Custom class to trigger animation
+        }
+    });
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll); // Trigger animations on load
+
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
